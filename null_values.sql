@@ -1,0 +1,21 @@
+SELECT electrical_capacity_null, energy_source_level_1_null, energy_source_level_2_null, energy_source_level_3_null,
+technology_null, data_source_null, nuts_1_region_null, nuts_2_region_null, nuts_3_region_null,
+lon_null, lat_null, municipality_null, postcode_null, region_null, locality_null, owner_null, site_name_null
+FROM
+(SELECT COUNT(*) AS electrical_capacity_null FROM CZ where CZ.electrical_capacity IS NULL) as electrical_capacity,
+(SELECT COUNT(*) AS energy_source_level_1_null FROM CZ where CZ.energy_source_level_1 IS NULL) as energy_source_level_1,
+(SELECT COUNT(*) AS energy_source_level_2_null FROM CZ where CZ.energy_source_level_2 IS NULL) as energy_source_level_2,
+(SELECT COUNT(*) AS energy_source_level_3_null FROM CZ where CZ.energy_source_level_3 IS NULL) as energy_source_level_3,
+(SELECT COUNT(*) AS technology_null FROM CZ where CZ.technology IS NULL) as technology,
+(SELECT COUNT(*) AS data_source_null FROM CZ where CZ.data_source IS NULL) as data_source,
+(SELECT COUNT(*) AS nuts_1_region_null FROM CZ where CZ.nuts_1_region IS NULL) as nuts_1_region,
+(SELECT COUNT(*) AS nuts_2_region_null FROM CZ where CZ.nuts_2_region IS NULL) as nuts_2_region,
+(SELECT COUNT(*) AS nuts_3_region_null FROM CZ where CZ.nuts_3_region IS NULL) as nuts_3_region,
+(SELECT COUNT(*) AS lon_null FROM CZ where CZ.lon IS NULL) as lon,
+(SELECT COUNT(*) AS lat_null FROM CZ where CZ.lat IS NULL) as lat,
+(SELECT COUNT(*) AS municipality_null FROM CZ where CZ.municipality IS NULL) as municipality,
+(SELECT COUNT(*) AS postcode_null FROM CZ where CZ.postcode IS NULL) as postcode,
+(SELECT COUNT(*) AS region_null FROM CZ where CZ.region IS NULL) as region,
+(SELECT COUNT(*) AS locality_null FROM CZ where CZ.locality IS NULL) as locality,
+(SELECT COUNT(*) AS owner_null FROM CZ where CZ.owner IS NULL) as owner,
+(SELECT COUNT(*) AS site_name_null FROM CZ where CZ.site_name IS NULL) as site_name

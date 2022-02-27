@@ -1,0 +1,414 @@
+****************** CH SVIZZERA **************************+
+
+SELECT "min",MIN(electrical_capacity)
+FROM CH
+UNION 
+SELECT "max",MAX(electrical_capacity)
+FROM CH;
+
+SELECT * FROM
+
+(
+SELECT "0.005 < electrical_capacity <= 0.01",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >0.005 and electrical_capacity <= 0.01
+UNION ALL
+SELECT "0.01 < electrical_capacity <= 0.1",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >0.01 and electrical_capacity <= 0.1
+UNION ALL
+SELECT "0 < electrical_capacity <= 0.005",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >0 and electrical_capacity <= 0.005
+UNION ALL
+SELECT "0.1 < electrical_capacity <= 0.2",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >0.1 and electrical_capacity <= 0.2
+UNION ALL
+SELECT "0.2 < electrical_capacity <= 15",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >0.2 and electrical_capacity <= 15 
+UNION ALL
+SELECT "electrical_capacity > 15",COUNT(*) as count
+FROM CH
+WHERE electrical_capacity >15 ) as subquery
+order by count DESC
+
+
+
+SELECT energy_source_level_3,COUNT(*)
+FROM CH
+GROUP BY energy_source_level_3 
+ORDER BY COUNT(*) DESC;
+
+
+SELECT  technology,COUNT(*)
+FROM CH
+GROUP BY technology
+ORDER BY COUNT(*) DESC;
+
+
+SELECT nuts_1_region,COUNT(*)
+FROM CH
+GROUP BY nuts_1_region
+ORDER BY COUNT(*) DESC;
+
+SELECT nuts_2_region,COUNT(*)
+FROM CH
+GROUP BY nuts_2_region
+ORDER BY COUNT(*) DESC;
+
+SELECT nuts_3_region,COUNT(*)
+FROM CH
+GROUP BY nuts_3_region
+ORDER BY COUNT(*) DESC;
+
+SELECT municipality,COUNT(*)
+FROM CH
+GROUP BY municipality
+ORDER BY COUNT(*) DESC
+LIMIT 0,10;
+
+SELECT canton,COUNT(*)
+FROM CH
+GROUP BY canton
+ORDER BY COUNT(*) DESC;
+
+
+SELECT DATE_FORMAT(commissioning_date, "%Y") as year ,count(*) 
+FROM CH 
+GROUP BY DATE_FORMAT(commissioning_date, "%Y")
+ORDER BY count(*) DESC 
+
+SELECT DATE_FORMAT(contract_period_end, "%Y") as year ,count(*) 
+FROM CH 
+GROUP BY DATE_FORMAT(contract_period_end, "%Y")
+ORDER BY count(*) DESC 
+
+SELECT company,COUNT(*)
+FROM CH
+GROUP BY company
+ORDER BY COUNT(*) DESC
+LIMIT 0,10;
+
+Select  "others",SUM(count)
+	FROM (
+	SELECT company,COUNT(*) as count
+	FROM CH
+	GROUP BY company
+	ORDER BY COUNT(*) DESC
+	LIMIT 10, 100000)as c
+ 
+ 
+SELECT "min",MIN(tariff)
+FROM CH
+UNION 
+SELECT "max",MAX(tariff)
+FROM CH;
+
+SELECT * FROM
+(SELECT "0 < tariff <= 1000",COUNT(*) as count
+FROM CH
+WHERE tariff >0 and tariff <= 1000 
+UNION ALL
+SELECT "tariff <= 0",COUNT(*) as count
+FROM CH
+WHERE tariff <=0
+UNION ALL
+SELECT "10000 < tariff <= 10000",COUNT(*) as count
+FROM CH
+WHERE tariff >1000 and tariff <= 10000 
+UNION ALL
+SELECT "tariff > 100000",COUNT(*) as count
+FROM CH
+WHERE tariff >10000 ) as subquery
+order by count DESC
+
+
+SELECT "min",MIN(production)
+FROM CH
+UNION 
+SELECT "max",MAX(production)
+FROM CH;
+
+SELECT * FROM
+
+(
+SELECT "0 < production <= 25",COUNT(*) as count
+FROM CH
+WHERE production >0 and production <= 25 
+UNION ALL
+SELECT "25 < production <= 50",COUNT(*) as count
+FROM CH
+WHERE production >25 and production <= 50 
+UNION ALL
+SELECT "production <= 0",COUNT(*) as count
+FROM CH
+WHERE production <=0
+UNION ALL
+SELECT "50 < production <= 1000",COUNT(*) as count
+FROM CH
+WHERE production >50 and production <= 1000 
+UNION ALL
+SELECT "1000 < production <= 10000",COUNT(*) as count
+FROM CH
+WHERE production >1000 and production <= 10000 
+UNION ALL
+SELECT "production > 10000",COUNT(*) as count
+FROM CH
+WHERE production >10000 ) as subquery
+order by count DESC
+
+
+---------------   CZ --------------------------------
+
+SELECT * FROM
+
+(
+SELECT "0 < electrical_capacity <= 0.01",COUNT(*) as count
+FROM CZ
+WHERE electrical_capacity >0 and electrical_capacity <= 0.01
+UNION ALL
+SELECT "0.01 < electrical_capacity <= 1",COUNT(*) as count
+FROM CZ
+WHERE electrical_capacity >0.01 and electrical_capacity <= 1
+UNION ALL
+SELECT "1 < electrical_capacity <= 5",COUNT(*) as count
+FROM CZ
+WHERE electrical_capacity >1 and electrical_capacity <= 5
+UNION ALL
+SELECT "electrical_capacity > 5",COUNT(*) as count
+FROM CZ
+WHERE electrical_capacity >5 
+) as subquery
+order by count DESC
+
+SELECT region,COUNT(*)
+FROM CZ
+GROUP BY region
+ORDER BY COUNT(*) DESC;
+
+SELECT locality,COUNT(*)
+FROM CZ
+GROUP BY locality
+ORDER BY COUNT(*) DESC
+Limit 0,10;
+
+SELECT site_name,COUNT(*)
+FROM CZ
+GROUP BY site_name
+ORDER BY COUNT(*) DESC
+LIMIT 0,11;
+
+****************** DE GERMANIA **************************+
+
+SELECT voltage_level,COUNT(*)
+FROM DE
+GROUP BY voltage_level
+ORDER BY COUNT(*) DESC
+LIMIT 0,10;
+
+
+SELECT dso,COUNT(*)
+FROM DE
+GROUP BY dso
+ORDER BY COUNT(*) DESC
+LIMIT 0,10;
+
+
+SELECT tso,COUNT(*)
+FROM DE
+GROUP BY tso
+ORDER BY COUNT(*) DESC
+LIMIT 0,10;
+
+
+****************** DK DANIMARCA **************************+
+
+
+
+SELECT * FROM
+
+(
+SELECT "0 < electrical_capacity <= 0.005",COUNT(*) as count
+FROM DK
+WHERE electrical_capacity >0 and electrical_capacity <= 0.005
+UNION ALL
+SELECT "0.005 < electrical_capacity <= 0.01",COUNT(*) as count
+FROM DK
+WHERE electrical_capacity >0.005 and electrical_capacity <= 0.01
+UNION ALL
+SELECT "0.01 < electrical_capacity <= 0.1",COUNT(*) as count
+FROM DK
+WHERE electrical_capacity >0.01 and electrical_capacity <= 0.1
+UNION ALL
+SELECT "0.1 < electrical_capacity <= 1",COUNT(*) as count
+FROM DK
+WHERE electrical_capacity >0.1 and electrical_capacity <= 1
+UNION ALL
+SELECT "electrical_capacity > 1",COUNT(*) as count
+FROM DK
+WHERE electrical_capacity >1 ) as subquery
+order by count DESC
+
+
+
+S
+SELECT * FROM
+
+(
+SELECT "0 < hub_height <= 25",COUNT(*) as count
+FROM DK
+WHERE hub_height >0 and hub_height <= 25 
+UNION ALL
+SELECT "25 < hub_height <= 100",COUNT(*) as count
+FROM DK
+WHERE hub_height >25 and hub_height <= 100
+
+UNION ALL
+SELECT "100 < hub_height <= 189",COUNT(*) as count
+FROM DK
+WHERE hub_height >100 and hub_height <= 189
+
+) as subquery
+order by count DESC
+
+
+************* FR FRANCIA *******************
+SELECT * FROM
+
+(
+SELECT "0 < # installations < 3 ",COUNT(*) as count
+FROM FR
+WHERE number_of_installations > 0  and number_of_installations < 3
+UNION ALL
+SELECT "3 <= # installations < 10 ",COUNT(*) as count
+FROM FR
+WHERE number_of_installations >= 3  and number_of_installations < 10
+UNION ALL
+SELECT " # installations > 10",COUNT(*) as count
+FROM FR
+WHERE number_of_installations >10) as subquery
+order by count DESC
+
+
+
+******* PL POLONIA ********************
+
+SELECT * FROM
+
+(
+SELECT "0.0001 < electrical_capacity <= 0.01",COUNT(*) as count
+FROM PL
+WHERE electrical_capacity >0.001 and electrical_capacity <= 0.01
+UNION ALL
+SELECT "0.01 < electrical_capacity <= 0.1",COUNT(*) as count
+FROM PL
+WHERE electrical_capacity >0.01 and electrical_capacity <= 0.1
+UNION ALL
+SELECT "0.1 < electrical_capacity <= 1",COUNT(*) as count
+FROM PL
+WHERE electrical_capacity >0.1 and electrical_capacity <= 1
+UNION ALL
+SELECT "1 < electrical_capacity <= 15",COUNT(*) as count
+FROM PL
+WHERE electrical_capacity >1 and electrical_capacity <= 15 
+UNION ALL
+SELECT "electrical_capacity > 15",COUNT(*) as count
+FROM PL
+WHERE electrical_capacity >15 ) as subquery
+order by count DESC
+
+
+******** SE SVEZIA **********************
+
+
+SELECT * FROM
+
+(
+SELECT "0 < electrical_capacity <= 0.1",COUNT(*) as count
+FROM SE
+WHERE electrical_capacity >0 and electrical_capacity <= 0.1
+UNION ALL
+SELECT "0.1 < electrical_capacity <= 1",COUNT(*) as count
+FROM SE
+WHERE electrical_capacity >0.1 and electrical_capacity <= 1
+UNION ALL
+SELECT "1 < electrical_capacity <= 3",COUNT(*) as count
+FROM SE
+WHERE electrical_capacity >1 and electrical_capacity <= 4
+UNION ALL
+SELECT "electrical_capacity > 4",COUNT(*) as count
+FROM SE
+WHERE electrical_capacity >4 ) as subquery
+order by count DESC
+
+******** UK REGNO UNITO ********************
+
+
+SELECT * FROM
+
+(
+
+SELECT "0.2 < electrical_capacity <= 5",COUNT(*) as count
+FROM UK
+WHERE electrical_capacity >0.2 and electrical_capacity <= 5
+UNION ALL
+SELECT "5 < electrical_capacity <= 15",COUNT(*) as count
+FROM UK
+WHERE electrical_capacity >5 and electrical_capacity <= 15
+UNION ALL
+SELECT "15 < electrical_capacity <= 100",COUNT(*) as count
+FROM UK
+WHERE electrical_capacity >15 and electrical_capacity <= 100
+UNION ALL
+SELECT "electrical_capacity > 100",COUNT(*) as count
+FROM UK
+WHERE electrical_capacity >100 ) as subquery
+order by count DESC
+
+
+
+SELECT * FROM
+
+(
+SELECT "0",COUNT(*) as count
+FROM UK
+WHERE capacity_individual_turbine = 0
+UNION ALL
+SELECT "0 < capacity_individual_turbine <= 2",COUNT(*) as count
+FROM UK
+WHERE capacity_individual_turbine >0 and capacity_individual_turbine <= 2
+UNION ALL
+SELECT "2 < capacity_individual_turbine <= 4",COUNT(*) as count
+FROM UK
+WHERE capacity_individual_turbine >2 and capacity_individual_turbine <= 4
+
+UNION ALL
+SELECT "4 < capacity_individual_turbine <= 8",COUNT(*) as count
+FROM UK
+WHERE capacity_individual_turbine >4 and capacity_individual_turbine <= 8
+ 
+ ) as subquery
+order by count DESC
+
+
+
+SELECT * FROM
+
+(
+SELECT "0 < number_of_turbines <= 25",COUNT(*) as count
+FROM UK
+WHERE number_of_turbines >0 and number_of_turbines <= 25 
+UNION ALL
+SELECT "25 < number_of_turbines <= 100",COUNT(*) as count
+FROM UK
+WHERE number_of_turbines >25 and number_of_turbines <= 100 
+UNION ALL
+
+SELECT "100 < number_of_turbines <= 175",COUNT(*) as count
+FROM UK
+WHERE number_of_turbines >100 and number_of_turbines <= 175
+
+) as subquery
+order by count DESC
